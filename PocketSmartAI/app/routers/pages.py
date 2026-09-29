@@ -1,0 +1,21 @@
+from fastapi import APIRouter,Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+router=APIRouter(); templates=Jinja2Templates("app/templates")
+def p(request,name): return templates.TemplateResponse(request=request,name=name)
+@router.get("/",response_class=HTMLResponse)
+def home(request:Request): return p(request,"index.html")
+@router.get("/login",response_class=HTMLResponse)
+def login(request:Request): return p(request,"login.html")
+@router.get("/register",response_class=HTMLResponse)
+def register(request:Request): return p(request,"register.html")
+@router.get("/dashboard",response_class=HTMLResponse)
+def dashboard(request:Request): return p(request,"dashboard.html")
+@router.get("/planner/home",response_class=HTMLResponse)
+def hp(request:Request): return p(request,"home_planner.html")
+@router.get("/planner/party",response_class=HTMLResponse)
+def pp(request:Request): return p(request,"party_planner.html")
+@router.get("/planner/jewelry",response_class=HTMLResponse)
+def jp(request:Request): return p(request,"jewelry_planner.html")
+@router.get("/history",response_class=HTMLResponse)
+def hist(request:Request): return p(request,"history.html")

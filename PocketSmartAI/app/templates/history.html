@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}History{% endblock %}{% block content %}<h1>Recommendation history</h1><div id="historyList" class="card">Loading…</div><div id="details"></div>{% endblock %}{% block scripts %}<script>
+(async()=>{let r=await api("/history");if(!r.ok){location.href="/login";return}let x=await r.json();document.getElementById("historyList").innerHTML=x.length?x.map(a=>`<div class="history-row"><a href="#${a.id}" onclick="loadDetails(${a.id});return false">${escapeHtml(a.title)}</a><b>₹${a.budget.toLocaleString("en-IN")}</b></div>`).join(""):"No saved recommendations.";if(location.hash)loadDetails(location.hash.slice(1))})();
+async function loadDetails(id){let r=await api("/recommendations-details/"+id);if(r.ok){let x=await r.json();document.getElementById("details").innerHTML=renderRecommendation(x.result)}}
+</script>{% endblock %}

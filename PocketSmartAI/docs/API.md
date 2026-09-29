@@ -1,0 +1,13 @@
+# API
+- POST /register
+- POST /login
+- POST /logout
+- POST /token
+- GET /session-info
+- GET /session-data
+- POST /generate-home
+- POST /generate-party
+- POST /generate-jewelry (multipart)
+- GET /history
+- GET /recommendations-details/{id}
+- GET /health
